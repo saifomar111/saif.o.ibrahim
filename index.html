@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content=" design, دیزاین, saif.o.ibrahim">
+<meta name="keywords" content="design, دیزاین, saif.o.ibrahim">
+<meta name="author" content="saif">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> saif.o.ibrahim </title>
+
+<style>
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY + BACKGROUND IMAGE ===== */
+body {
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Background image layer */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: 
+        linear-gradient(
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.9)
+        ),
+        url("7.jpg") center / cover no-repeat;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+/* ===== TOP NAME PILL ===== */
+.header {
+    padding-top: 90px;
+    padding-bottom: 40px;
+}
+
+.name-pill {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(27, 22, 22, 0.1); /* subtle translucent box */
+    padding: 12px 26px;
+    border-radius: 50px; /* pill shape */
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: #ffffff;
+    text-shadow: 0 0 6px rgba(255,255,255,0.3);
+    backdrop-filter: blur(4px); /* soft glass effect */
+    margin-left: 60px; /* positioned on the left */
+}
+
+/* Instagram logo only */
+.name-pill .insta-icon {
+    width: 22px;
+    height: 22px;
+    margin-left: 12px;
+    filter: brightness(0.9) drop-shadow(0 0 2px white);
+}
+
+/* ===== PAGE WRAPPER ===== */
+.wrapper {
+    max-width: 1000px;      
+    margin: 0 auto;
+    padding: 120px 80px;    
+}
+
+/* ===== GALLERY ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 100px; /* larger margins between images */
+}
+
+/* ===== IMAGE CARD ===== */
+.card {
+    background: rgba(37, 36, 36, 0.9);
+    padding: 24px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* IMAGE (keeps natural size) */
+.card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    filter: brightness(70%);
+    transition: 0.4s ease;
+}
+
+.card:hover img {
+    filter: brightness(50%);
+}
+
+/* LABEL */
+.label {
+    margin-top: 18px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+/* ===== VIEWER ===== */
+.viewer {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.viewer img {
+    max-width: 80%;
+    max-height: 75%;
+    object-fit: contain;
+    margin-bottom: 40px;
+}
+
+/* BACK BUTTON */
+.back-btn {
+    padding: 12px 30px;
+    border: 1px solid #777;
+    background: transparent;
+    color: #fff;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 70px 30px;
+    }
+
+    .gallery {
+        gap: 60px;
+    }
+
+    .name-pill {
+        font-size: 18px;
+        padding: 10px 20px;
+        margin-left: 30px;
+    }
+
+    .name-pill .insta-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAME PILL WITH INSTAGRAM LOGO ONLY -->
+<div class="header">
+    <div class="name-pill">
+        saif.o.ibrahim
+        <img src="instagram.png" class="insta-icon" alt="Instagram">
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="wrapper">
+
+    <section class="gallery">
+
+        <div class="card" onclick="openViewer(this)">
+            <img src="img1.jpg">
+            <div class="label">SCENE I</div>
+        </div>
+
+        <div class="card" onclick="openViewer(this)">
+            <img src="img2.jpg">
+            <div class="label">SCENE II</div>
+        </div>
+
+        <div class="card" onclick="openViewer(this)">
+            <img src="img3.jpg">
+            <div class="label">SCENE III</div>
+        </div>
+
+        <div class="card" onclick="openViewer(this)">
+            <img src="img4.jpg">
+            <div class="label">SCENE IV</div>
+        </div>
+
+        <div class="card" onclick="openViewer(this)">
+            <img src="img5.jpg">
+            <div class="label">SCENE V</div>
+        </div>
+
+        <div class="card" onclick="openViewer(this)">
+            <img src="img6.jpg">
+            <div class="label">SCENE VI</div>
+        </div>
+
+    </section>
+
+</div>
+
+<!-- VIEWER -->
+<div class="viewer" id="viewer">
+    <img id="viewerImg">
+    <button class="back-btn" onclick="closeViewer()">زڤرین</button>
+</div>
+
+<script>
+function openViewer(card) {
+    document.getElementById("viewerImg").src =
+        card.querySelector("img").src;
+    document.getElementById("viewer").style.display = "flex";
+}
+
+function closeViewer() {
+    document.getElementById("viewer").style.display = "none";
+}
+</script>
+
+</body>
+</html>
