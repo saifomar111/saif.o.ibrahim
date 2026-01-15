@@ -17,8 +17,8 @@
 
 /* ===== BODY ===== */
 body {
-    font-family: rudaw;
-    color: #000000;
+    font-family: rudawbold, rabar_011;
+    color: #ffffff;
     min-height: 100vh;
     position: relative;
 }
@@ -35,17 +35,22 @@ body::before {
     z-index: -1;
 }
 
-/* ===== SEARCH BAR ===== */
-.search-bar {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    backdrop-filter: blur(10px);
+/* ===== SEARCH BAR WRAPPER ===== */
+.search-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    background: linear-gradient(
+        rgba(0,0,0,0.9),
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0)
+    );
     text-align: center;
 }
 
+/* ===== SEARCH BAR ===== */
 .search-bar input {
     width: 360px;
     padding: 14px 24px;
@@ -59,21 +64,21 @@ body::before {
 }
 
 .search-bar input::placeholder {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.6);
 }
 
-/* 🔹 TEXT UNDER SEARCH BAR */
+/* ===== TEXT UNDER SEARCH ===== */
 .search-note {
-    margin-top: 10px;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 3px;
+    margin-top: 14px;
+    font-size: 16px;        /* bigger */
+    letter-spacing: 4px;
+    color: #ffffff;        /* white */
+    opacity: 0.85;
 }
 
 /* ===== HEADER ===== */
 .header {
-    padding-top: 170px; /* pushed for search + text */
+    padding-top: 40px;
     padding-bottom: 40px;
 }
 
@@ -179,9 +184,11 @@ body::before {
 <body>
 
 <!-- SEARCH -->
-<div class="search-bar">
-    <input type="text" placeholder="لێگەریان......" onkeyup="searchCards(this.value)">
-    <div class="search-note"> سێرچ یا ڤالایە چ نە نڤێسە</div>
+<div class="search-wrapper">
+    <div class="search-bar">
+        <input type="text" placeholder="لێگەریان......" onkeyup="searchCards(this.value)">
+    </div>
+    <div class="search-note">چ نە نڤێسە سێرچ یا ڤالایە</div>
 </div>
 
 <!-- HEADER -->
