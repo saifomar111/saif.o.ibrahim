@@ -17,8 +17,8 @@
 
 /* ===== BODY ===== */
 body {
-    font-family: Arial, sans-serif;
-    color: #ffffff;
+    font-family: rudaw;
+    color: #000000;
     min-height: 100vh;
     position: relative;
 }
@@ -35,25 +35,26 @@ body::before {
     z-index: -1;
 }
 
-/* 🔹 SEARCH BAR */
+/* ===== SEARCH BAR ===== */
 .search-bar {
     position: fixed;
-    top: 20px;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
     backdrop-filter: blur(10px);
+    text-align: center;
 }
 
 .search-bar input {
     width: 360px;
     padding: 14px 24px;
-    border-radius: 40px;
+    border-radius: 90px;
     border: 1px solid rgba(255,255,255,0.2);
     background: rgba(0,0,0,0.5);
     color: #fff;
     font-size: 14px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     outline: none;
 }
 
@@ -61,9 +62,18 @@ body::before {
     color: rgba(255,255,255,0.5);
 }
 
+/* 🔹 TEXT UNDER SEARCH BAR */
+.search-note {
+    margin-top: 10px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 3px;
+}
+
 /* ===== HEADER ===== */
 .header {
-    padding-top: 140px; /* 🔹 pushed down for search bar */
+    padding-top: 170px; /* pushed for search + text */
     padding-bottom: 40px;
 }
 
@@ -168,9 +178,10 @@ body::before {
 
 <body>
 
-<!-- 🔹 SEARCH -->
+<!-- SEARCH -->
 <div class="search-bar">
-    <input type="text" placeholder="SEARCH..." onkeyup="searchCards(this.value)">
+    <input type="text" placeholder="لێگەریان......" onkeyup="searchCards(this.value)">
+    <div class="search-note"> سێرچ یا ڤالایە چ نە نڤێسە</div>
 </div>
 
 <!-- HEADER -->
@@ -234,7 +245,6 @@ function closeViewer() {
     viewer.style.display = "none";
 }
 
-/* 🔹 SEARCH FUNCTION */
 function searchCards(value) {
     value = value.toLowerCase();
     document.querySelectorAll(".card").forEach(card => {
