@@ -12,8 +12,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; 
-
+    box-sizing: border-box;
 }
 
 /* ===== BODY ===== */
@@ -24,24 +23,47 @@ body {
     position: relative;
 }
 
-/* ===== BLURRED BACKGROUND (NO WHITE EDGES) ===== */
+/* ===== BLURRED BACKGROUND ===== */
 body::before {
     content: "";
     position: fixed;
-    inset: -40px; /* 🔥 hides blur edges */
+    inset: -40px;
     background:
-        linear-gradient(
-            rgba(0,0,0,0.75),
-            rgba(0,0,0,0.9)
-        ),
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
         url("7.jpg") center / cover no-repeat;
     filter: blur(8px);
     z-index: -1;
 }
 
+/* 🔹 SEARCH BAR */
+.search-bar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.search-bar input {
+    width: 360px;
+    padding: 14px 24px;
+    border-radius: 40px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 2px;
+    outline: none;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
 /* ===== HEADER ===== */
 .header {
-    padding-top: 90px;
+    padding-top: 140px; /* 🔹 pushed down for search bar */
     padding-bottom: 40px;
 }
 
@@ -53,9 +75,6 @@ body::before {
     border-radius: 70px;
     font-size: 30px;
     letter-spacing: 1px;
-    color: #ffffff;
-    text-shadow: 0 0 6px rgba(0,0,0,0.6);
-    backdrop-filter: blur(2px);
     margin-left: 60px;
 }
 
@@ -63,10 +82,9 @@ body::before {
     width: 30px;
     height: 30px;
     margin-left: 12px;
-    filter: brightness(0.9);
 }
 
-/* ===== CONTENT WRAPPER ===== */
+/* ===== CONTENT ===== */
 .wrapper {
     max-width: 1500px;
     margin: 0 auto;
@@ -92,10 +110,8 @@ body::before {
 /* ===== IMAGE ===== */
 .card img {
     max-width: 100%;
-    height: auto;
-    display: block;
     border-radius: 8px;
-    background: #000; /* 🔥 kills white pixels */
+    background: #000;
     filter: brightness(90%);
     transition: 0.25s ease;
 }
@@ -127,11 +143,8 @@ body::before {
 .viewer img {
     max-width: 80%;
     max-height: 75%;
-    object-fit: contain;
-    background: #000;
     padding: 20px;
     border-radius: 14px;
-    box-shadow: 0 0 70px rgba(0,0,0,0.95);
 }
 
 /* ===== BACK BUTTON ===== */
@@ -141,94 +154,68 @@ body::before {
     border: 1px solid #777;
     background: transparent;
     color: #fff;
-    letter-spacing: 2px;
-    cursor: pointer;
     font-size: 40px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .back-btn:hover {
     background: #fff;
     color: #000;
 }
-
-/* ===== MOBILE ===== */
-@media (max-width: 690px) {
-    .wrapper {
-        padding: 60px 25px;
-    }
-
-    .gallery {
-        gap: 50px;
-    }
-
-    .name-pill {
-        font-size: 26px;
-        margin-left: 30px;
-    }
-
-    .name-pill .insta-icon {
-        width: 24px;
-        height: 24px;
-    }
-}
 </style>
 </head>
 
 <body>
 
+<!-- 🔹 SEARCH -->
+<div class="search-bar">
+    <input type="text" placeholder="SEARCH..." onkeyup="searchCards(this.value)">
+</div>
+
 <!-- HEADER -->
 <div class="header">
     <div class="name-pill">
         saif.o.ibrahim
-        <img src="instagram.png" class="insta-icon" alt="Instagram">
+        <img src="instagram.png" class="insta-icon">
     </div>
 </div>
 
 <!-- CONTENT -->
 <div class="wrapper">
-    <section class="gallery">
+<section class="gallery">
 
-        <div class="card" onclick="openViewer(this)">
-            <img src="img1.jpg" loading="lazy" alt="">
-            <div class="label">تەپاپێ</div>
-        </div>
+<div class="card" onclick="openViewer(this)">
+    <img src="img1.jpg">
+    <div class="label">تەپاپێ</div>
+</div>
 
-        <div class="card" onclick="openViewer(this)">
-            <img src="img2.jpg" loading="lazy" alt="">
-            <div class="label">سینەما</div>
-        </div>
+<div class="card" onclick="openViewer(this)">
+    <img src="img2.jpg">
+    <div class="label">سینەما</div>
+</div>
 
-        <div class="card" onclick="openViewer(this)">
-            <img src="img3.jpg" loading="lazy" alt="">
-            <div class="label">تەپاپێ</div>
-        </div>
+<div class="card" onclick="openViewer(this)">
+    <img src="img3.jpg">
+    <div class="label">تەپاپێ</div>
+</div>
 
-        <div class="card" onclick="openViewer(this)">
-            <img src="img4.jpg" loading="lazy" alt="">
-            <div class="label">جوگرافیا</div>
-        </div>
+<div class="card" onclick="openViewer(this)">
+    <img src="img4.jpg">
+    <div class="label">جوگرافیا</div>
+</div>
 
-        <div class="card" onclick="openViewer(this)">
-            <img src="img5.jpg" loading="lazy" alt="">
-            <div class="label">تەپاپێ</div>
-        </div>
+<div class="card" onclick="openViewer(this)">
+    <img src="img5.jpg">
+    <div class="label">تەپاپێ</div>
+</div>
 
-        <div class="card" onclick="openViewer(this)">
-            <img src="img6.jpg" loading="lazy" alt="">
-            <div class="label">دراماتیک</div>
-        </div>
+<div class="card" onclick="openViewer(this)">
+    <img src="img6.jpg">
+    <div class="label">دراماتیک</div>
+</div>
 
-        <div class="card" onclick="openViewer(this)">
-            <img src="8.jpg" loading="lazy" alt="">
-            <div class="label">سینەما</div>
-        </div>
-         <div class="card" onclick="openViewer(this)">
-            <img src="9.jpg" loading="lazy" alt="">
-            <div class="label">زانیاری </div>
-        </div>
-
-    </section>
+</section>
 </div>
 
 <!-- VIEWER -->
@@ -239,13 +226,21 @@ body::before {
 
 <script>
 function openViewer(card) {
-    document.getElementById("viewerImg").src =
-        card.querySelector("img").src;
-    document.getElementById("viewer").style.display = "flex";
+    viewerImg.src = card.querySelector("img").src;
+    viewer.style.display = "flex";
 }
 
 function closeViewer() {
-    document.getElementById("viewer").style.display = "none";
+    viewer.style.display = "none";
+}
+
+/* 🔹 SEARCH FUNCTION */
+function searchCards(value) {
+    value = value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card => {
+        const text = card.querySelector(".label").innerText.toLowerCase();
+        card.style.display = text.includes(value) ? "block" : "none";
+    });
 }
 </script>
 
